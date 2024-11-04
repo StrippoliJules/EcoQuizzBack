@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
+    console.log(req.body)
     const invoiceData: Partial<IInvoice> = req.body;
     const invoice = new Invoice(invoiceData);
     await invoice.save();

@@ -16,9 +16,9 @@ export interface IInvoice extends Document {
 }
 
 const InvoiceItemSchema: Schema = new Schema({
-  description: { type: String, required: true },
+  name: { type: String, required: true },
   quantity: { type: Number, required: true },
-  price: { type: Number, required: true },
+  unitPrice: { type: Number, required: true },
 });
 
 const InvoiceSchema: Schema<IInvoice> = new Schema(
