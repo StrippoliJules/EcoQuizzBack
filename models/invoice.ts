@@ -14,6 +14,7 @@ export interface IInvoice extends Document {
   items: IInvoiceItem[];
   createdAt: Date;
   updatedAt: Date;
+  invoiceNumber: string;
 }
 
 const InvoiceItemSchema: Schema = new Schema({
@@ -28,6 +29,7 @@ const InvoiceSchema: Schema<IInvoice> = new Schema(
     client: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
     address: { type: String, required: true },
     items: [InvoiceItemSchema],
+    invoiceNumber: { type: String, required: true }
   },
   { timestamps: true }
 );

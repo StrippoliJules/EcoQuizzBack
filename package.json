@@ -13,13 +13,19 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "docxtemplater": "^3.51.2",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "mongoose": "^8.7.3"
+    "html-pdf": "^3.0.1",
+    "mammoth": "^1.8.0",
+    "mongoose": "^8.7.3",
+    "pizzip": "^3.1.7"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/html-pdf": "^3.0.3",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^22.8.7",
     "ts-node": "^10.9.2",
