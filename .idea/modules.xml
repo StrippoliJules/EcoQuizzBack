@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FakturZ-Back.iml" filepath="$PROJECT_DIR$/.idea/FakturZ-Back.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lockerz-api.iml" filepath="$PROJECT_DIR$/.idea/lockerz-api.iml" />
     </modules>
   </component>
 </project>
