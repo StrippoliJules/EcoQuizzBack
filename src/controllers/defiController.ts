@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import { getDefis, updateUserDefiHistory } from "../services/defiService";
+import {getDefis, getUserDefiLatestDates, updateUserDefiHistory} from "../services/defiService";
+import User from "../models/userModel";
+import Defi from "../models/defiModel"
 
 const getAllDefis = async (req: Request, res: Response) => {
     try {
@@ -36,4 +38,22 @@ const updateDefiHistory = async (req: Request & { user?: string }, res: Response
     }
 };
 
-export { getAllDefis, updateDefiHistory };
+const getDefiLatestTimesController = async (req: Request, res: Response) => {
+    try {
+        const { userId } = req.body;
+        if (!userId) {
+            return res.status(400).json({ error: "userId manquant dans le body." });
+        }
+
+        const result = await getUserDefiLatestDates(userId);
+        return res.status(200).json(result);
+    } catch (error) {
+        console.error("[getDefiLatestTimesController]", error);
+        if (error instanceof Error) {
+            return res.status(500).json({ error: error.message });
+        }
+        return res.status(500).json({ error: "Erreur inconnue" });
+    }
+};
+
+export { getAllDefis, updateDefiHistory, getDefiLatestTimesController };
