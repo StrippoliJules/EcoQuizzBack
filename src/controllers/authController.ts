@@ -1,17 +1,13 @@
 import { Request, Response } from "express";
 import {
   register,
-  login,
-  verifyCode,
-  sendVerificationCode,
+  login
 } from "../services/authService";
 
 const signup = async (req: Request, res: Response) => {
   try {
-    const { firstname, lastname, email, password } = req.body;
+    const { email, password } = req.body;
     const { token, user } = await register(
-      firstname,
-      lastname,
       email,
       password
     );
@@ -51,32 +47,4 @@ const signin = async (req: Request, res: Response) => {
   }
 };
 
-const sendCode = async (req: Request, res: Response) => {
-  try {
-    const { email } = req.body;
-    const response = await sendVerificationCode(email);
-    res.status(200).json(response);
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ error: error.message });
-    } else {
-      res.status(400).json({ error: "Une erreur inconnue s'est produite" });
-    }
-  }
-};
-
-const checkCode = async (req: Request, res: Response) => {
-  try {
-    const { email, code } = req.body;
-    const response = await verifyCode(email, code);
-    res.status(200).json(response);
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(400).json({ error: error.message });
-    } else {
-      res.status(400).json({ error: "Une erreur inconnue s'est produite" });
-    }
-  }
-};
-
-export { signup, signin, sendCode, checkCode };
+export { signup, signin };
