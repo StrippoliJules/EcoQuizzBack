@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import QuizQuestion from "../models/quizModel";
 import User from "../models/userModel";
+import mongoose from "mongoose";
 
 interface AuthenticatedRequest extends Request {
-    user: any;
+    user: string;
   }
 
 export const getQuizQuestions = async (req: Request, res: Response) => {
@@ -17,8 +18,8 @@ export const getQuizQuestions = async (req: Request, res: Response) => {
 
 export const saveQuizResult = async (req: Request, res: Response) => {
   try {
-    const userId = (req as AuthenticatedRequest).user._id;
-    
+    const userId = (req as AuthenticatedRequest).user;
+    console.log(userId);
     const { impact } = req.body;
     if (typeof impact !== "number") {
       return res.status(400).json({ error: "La valeur de l'impact est requise et doit être un nombre." });

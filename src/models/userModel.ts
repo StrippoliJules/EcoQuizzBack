@@ -29,6 +29,15 @@ const UserSchema: Schema = new Schema({
     ],
     default: [],
   },
+  quiz_history: {
+    type: [
+      {
+        impact: { type: Number, required: true },
+        date: { type: Date, default: Date.now },
+      },
+    ],
+    default: [],
+  },
 });
 
 export default mongoose.model<IUser>("User", UserSchema);
