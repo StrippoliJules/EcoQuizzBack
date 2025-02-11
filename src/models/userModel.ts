@@ -1,13 +1,19 @@
 import mongoose, { Document, Schema } from "mongoose";
 
+export interface IQuizHistory {
+  impact: number;
+  date: Date;
+}
+
+export interface IDefiHistory {
+  defi: mongoose.Types.ObjectId;
+  date: Date;
+}
 export interface IUser extends Document {
   email: string;
   password: string;
-
-  defi_history: {
-    defi: mongoose.Types.ObjectId;
-    date: Date;
-  }[];
+  defi_history: IDefiHistory[];
+  quiz_history: IQuizHistory[];
 }
 
 const UserSchema: Schema = new Schema({
