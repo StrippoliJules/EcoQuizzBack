@@ -1,17 +1,12 @@
 import { Request, Response } from "express";
-import {
-  register,
-  login
-} from "../services/authService";
+import { register, login } from "../services/authService";
 
 const signup = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
-    const { token, user } = await register(
-      email,
-      password
-    );
-    res.status(201).json({ token, user });
+    const { token, user } = await register(email, password);
+    // On suppose que l'objet user possède une propriété _id
+    res.status(201).json({ session_token: token, user_id: user._id });
   } catch (error) {
     if (error instanceof Error) {
       if (error.message === "Utilisateur déjà existant") {
@@ -28,7 +23,7 @@ const signin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     const { token, user } = await login(email, password);
-    res.status(200).json({ token, user });
+    res.status(200).json({ session_token: token, user_id: user._id });
   } catch (error) {
     if (error instanceof Error) {
       if (error.message === "Utilisateur non trouvé") {
