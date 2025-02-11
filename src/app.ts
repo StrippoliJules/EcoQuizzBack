@@ -8,6 +8,7 @@ import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import defiRoutes from "./routes/defiRoutes";
 import quizRoutes from "./routes/quizRoutes";
+import userHistoryRoutes from "./routes/userHistoryRoutes";
 
 import cors from "cors";
 
@@ -21,6 +22,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/defi", defiRoutes);
 app.use("/api/quiz", quizRoutes);
+app.use("/api/userHistory", userHistoryRoutes);
 
 const dbURI =
   process.env.NODE_ENV === "test"
