@@ -6,6 +6,8 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
+import defiRoutes from "./routes/defiRoutes";
+
 import cors from "cors";
 
 const app = express();
@@ -16,6 +18,8 @@ app.use(bodyParser.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/defi", defiRoutes);
+
 
 const dbURI = process.env.NODE_ENV === 'test'
     ? process.env.MONGODB_TEST_URI

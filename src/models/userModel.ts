@@ -3,37 +3,26 @@ import mongoose, { Document, Schema } from "mongoose";
 export interface IUser extends Document {
   email: string;
   password: string;
+
+  defi_history: {
+    defi: mongoose.Types.ObjectId;
+    date: Date;
+  }[];
 }
 
 const UserSchema: Schema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  quiz_history: {
-    type: [{
-      impact: { 
-        type: Number, 
-        required: true 
-      },
-      date: { 
-        type: Date, 
-        default: Date.now 
-      }
-    }],
-    default: []
-  },
+
   defi_history: {
-    type: [{
-      defiId: { 
-        type: Number, 
-        required: true 
+    type: [
+      {
+        defi: { type: mongoose.Schema.Types.ObjectId, ref: "Defi" },
+        date: { type: Date, default: Date.now },
       },
-      date: { 
-        type: Date, 
-        default: Date.now 
-      }
-    }],
-    default: []
-  }
+    ],
+    default: [],
+  },
 });
 
 export default mongoose.model<IUser>("User", UserSchema);
