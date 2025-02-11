@@ -5,7 +5,6 @@ const signup = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     const { token, user } = await register(email, password);
-    // On suppose que l'objet user possède une propriété _id
     res.status(201).json({ session_token: token, user_id: user._id });
   } catch (error) {
     if (error instanceof Error) {

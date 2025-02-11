@@ -71,7 +71,6 @@ const getUserDefiLatestDates = async (userId: string) => {
         });
 
         if (found) {
-            // found.defi contient le doc "Defi"
             const foundDefiDoc = found.defi as any;
             results.push({
                 defiId: defiIdStr,
